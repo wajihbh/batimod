@@ -42,7 +42,7 @@
 					while($data=mysqli_fetch_assoc($res))
 					{
 					
-					echo '<option value="'.$data['id'].'">'.utf8_encode($data['label']).'</option>';
+					echo '<option value="'.$data['id'].'">'.batimod_utf8_encode($data['label']).'</option>';
 					}
 				}
 				else

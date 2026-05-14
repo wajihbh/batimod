@@ -58,7 +58,7 @@ if(isset($_FILES['image']) && $_FILES['image']!="")
 include("includes/dbConnect.php");
 
 $query="insert into projets (titre,descr, img,active,emplacement,categ,type) 
-values ('".utf8_decode($titre)."','".utf8_decode($desc)."','".$fichier."','".$active."','".utf8_decode($emplacement)."','".$categ."','".$type."')";
+values ('".batimod_utf8_decode($titre)."','".batimod_utf8_decode($desc)."','".$fichier."','".$active."','".batimod_utf8_decode($emplacement)."','".$categ."','".$type."')";
 
 $res=mysqli_query($con, $query) or die (mysqli_error($con));
 

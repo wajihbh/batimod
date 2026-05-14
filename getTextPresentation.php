@@ -4,7 +4,7 @@ $res=mysqli_query($con, $query);
 if($res)
 {
 	$data=mysqli_fetch_assoc($res);
-	echo utf8_encode($data['descr']);
+	echo batimod_utf8_encode($data['descr']);
 }
 else
 {

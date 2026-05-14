@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . '/encoding_compat.php';
+
 $con = @mysqli_connect(
     "batimodmain.mysql.db",
     "batimodmain",

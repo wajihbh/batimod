@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/includes/encoding_compat.php';
+
 $configFile = __DIR__ . '/db_config.local.php';
 if (is_readable($configFile)) {
     /** @var array{host:string,user:string,password:string,database:string} $dbConfig */

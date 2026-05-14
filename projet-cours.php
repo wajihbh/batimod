@@ -35,8 +35,8 @@
 			
 			echo '<div class="sous-block3"> 
 					<img class="img-sous-block3" src="images/'.$data['img'].'" /> 
-					<font>'.utf8_encode($data['titre']).' :</font>
-        		  	<p class="style7">'.utf8_encode($data['descr']).'</p>
+					<font>'.batimod_utf8_encode($data['titre']).' :</font>
+        		  	<p class="style7">'.batimod_utf8_encode($data['descr']).'</p>
       			  </div>';
 			}
 		}

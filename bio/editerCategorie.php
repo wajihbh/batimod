@@ -38,7 +38,7 @@
 			?>
 			<form action="saveEditCateg.php?id=<?php echo $_GET['id']; ?>" method="post">
 			<table align="center">
-			<tr><td>label Catégorie : </td><td><input type="text" value="<?php echo utf8_encode($data['label']); ?>" name="lbl"  /></td></tr>
+			<tr><td>label Catégorie : </td><td><input type="text" value="<?php echo batimod_utf8_encode($data['label']); ?>" name="lbl"  /></td></tr>
 			<tr><td><input type="submit" value="Enregistrer"  /></td><td><input type="reset" value="Annuler"  /></td></tr>
 			</table>
 			</form>

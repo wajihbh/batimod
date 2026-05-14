@@ -41,12 +41,12 @@ $data=mysqli_fetch_assoc($res);
 	<table  width="780" height="100%" border="0" align="center" style="border:#666666 1px double">
     <tr>
         <td valign="top">Rubrique : </td>
-        <td><?php echo utf8_encode($data['categ']); ?></td>
+        <td><?php echo batimod_utf8_encode($data['categ']); ?></td>
       </tr>
       <tr>
         <td width="200" valign="top">Description : </td>
         <td width="164">
-        <textarea name="descr" cols="80" rows="15"><?php echo utf8_encode($data['descr']); ?></textarea>       </td>
+        <textarea name="descr" cols="80" rows="15"><?php echo batimod_utf8_encode($data['descr']); ?></textarea>       </td>
       </tr>
       
       
@@ -64,7 +64,7 @@ $data=mysqli_fetch_assoc($res);
 }
 else
 {
-echo utf8_encode("Erreur lors de la récupération des informations");
+echo batimod_utf8_encode("Erreur lors de la récupération des informations");
 }
 ?></td>
   </tr></table>

@@ -13,13 +13,13 @@
 		  {
 			  while($dataCat=mysqli_fetch_assoc($resCat))
 			  {
-				  echo '<li class="has-sub"><a href="detailCategorie.php?cat='.$dataCat['id'].'"><span>'.utf8_encode($dataCat['label']).'</span></a>';
+				  echo '<li class="has-sub"><a href="detailCategorie.php?cat='.$dataCat['id'].'"><span>'.batimod_utf8_encode($dataCat['label']).'</span></a>';
 				  $queryProject='select * from projets where categ='.$dataCat['id'].' and type=1 and active=1';
 				  $resProject=mysqli_query($con, $queryProject);
 				  echo '<ul>';
 				  while($dataProject=mysqli_fetch_assoc($resProject))
 				  {
-					 echo '<li><a href="detailReference.php?id='.$dataProject['id'].'"><span>'.utf8_encode($dataProject['titre']).'</span></a></li>';
+					 echo '<li><a href="detailReference.php?id='.$dataProject['id'].'"><span>'.batimod_utf8_encode($dataProject['titre']).'</span></a></li>';
 				  }
 				  echo '</ul>';
 				  echo '</li>';

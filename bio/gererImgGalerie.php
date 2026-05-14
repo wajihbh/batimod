@@ -24,7 +24,7 @@
 	?>
     <div align="center">
       <div align="center">
-       <p><span class="titleRubrique" >Gestion Gallerie du projet <?php echo utf8_encode($data['titre']); ?></span></p>
+       <p><span class="titleRubrique" >Gestion Gallerie du projet <?php echo batimod_utf8_encode($data['titre']); ?></span></p>
       </div>
     </div>
     </td>

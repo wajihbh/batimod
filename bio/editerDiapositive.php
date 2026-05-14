@@ -45,8 +45,8 @@ $data=mysqli_fetch_assoc($res);
 
   <table width="730" height="140"   border="0" align="center" cellpadding="0" cellspacing="0" >
   
-     <tr><td>Titre : </td><td><input type="text" name='titre'  value="<?php echo utf8_encode($data['titre']); ?>" /></td></tr>
-     <tr><td>Description : </td><td><textArea name='desc' cols="70" rows="9"><?php echo utf8_encode($data['descr']); ?></textArea></td></tr>
+     <tr><td>Titre : </td><td><input type="text" name='titre'  value="<?php echo batimod_utf8_encode($data['titre']); ?>" /></td></tr>
+     <tr><td>Description : </td><td><textArea name='desc' cols="70" rows="9"><?php echo batimod_utf8_encode($data['descr']); ?></textArea></td></tr>
      <tr><td>Image Actuel : </td><td><img src="../images/<?php echo $data['img']; ?>"  /><br /> <a href="javascript:affichage_popup('modifierDiapositive.php?id=<?php echo $data['id']; ?>','Modifier IMG');">Modifier</a><br /><br /></td></tr>    
      <tr><td><input type="submit" Value='Enregister'/></td><td><input type="reset" Value='Annuler'/></td></tr>
     </table>

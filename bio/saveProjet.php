@@ -5,11 +5,11 @@ $id=$_GET['id'];
 
 $query="Update projets set 
 
-titre='".addslashes(utf8_decode($_POST['titre']))."', 
-descr='".addslashes(utf8_decode($_POST['desc']))."', 
-Emplacement='".utf8_decode(addslashes($_POST['emplacement']))."', 
-categ='".utf8_decode(addslashes($_POST['categ']))."', 
-type='".utf8_decode(addslashes($_POST['type']))."'
+titre='".addslashes(batimod_utf8_decode($_POST['titre']))."', 
+descr='".addslashes(batimod_utf8_decode($_POST['desc']))."', 
+Emplacement='".batimod_utf8_decode(addslashes($_POST['emplacement']))."', 
+categ='".batimod_utf8_decode(addslashes($_POST['categ']))."', 
+type='".batimod_utf8_decode(addslashes($_POST['type']))."'
 where id='".$id."'";
 
 $res=mysqli_query($con, $query) or die (mysqli_error($con));
