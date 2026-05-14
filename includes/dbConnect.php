@@ -1,19 +1,9 @@
 <?php
-
-$configFile = __DIR__ . '/db_config.local.php';
-if (is_readable($configFile)) {
-    /** @var array{host:string,user:string,password:string,database:string} $dbConfig */
-    $dbConfig = require $configFile;
-} else {
-    /** @var array{host:string,user:string,password:string,database:string} $dbConfig */
-    $dbConfig = require __DIR__ . '/db_config.local.example.php';
-}
-
 $con = @mysqli_connect(
-    $dbConfig['host'],
-    $dbConfig['user'],
-    $dbConfig['password'],
-    $dbConfig['database']
+    "batimodmain.mysql.db",
+    "batimodmain",
+    "MRJDk30CtSv4GIBDGoMI",
+    "batimodmain"
 );
 
 if (!$con instanceof mysqli) {
