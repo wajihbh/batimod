@@ -40,7 +40,7 @@ if (!function_exists('batimod_pdo_escape')) {
     /**
      * Échappement pour SQL concaténé hérité (préférer les requêtes préparées).
      */
-    function batimod_pdo_escape(PDO $pdo, string $value): string
+    function batimod_pdo_escape(PDO $pdo, string $value)
     {
         $q = $pdo->quote($value);
 
