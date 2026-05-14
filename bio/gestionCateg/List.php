@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 require __DIR__ . '/config.php';
 
-$result = mysqli_query($con, 'SELECT * FROM `categorie`') or trigger_error(mysqli_error($con), E_USER_ERROR);
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    echo '<p>' . htmlspecialchars((string) ($row['label'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '</p>';
+try {
+    $stmt = $pdo->query('SELECT * FROM `categorie`');
+    if ($stmt === false) {
+        trigger_error('Query failed', E_USER_ERROR);
+    }
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo '<p>' . htmlspecialchars((string) ($row['label'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '</p>';
+    }
+} catch (PDOException $e) {
+    trigger_error($e->getMessage(), E_USER_ERROR);
 }

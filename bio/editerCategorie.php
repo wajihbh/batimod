@@ -26,7 +26,7 @@
         include("includes/dbConnect.php");
         $id=$_GET['id'];
         $query="Select * from categorie where id='".$id."' limit 1";
-        $res=mysqli_query($con, $query);
+        $res=$pdo->query( $query);
         
         if(!$res)
         {
@@ -34,7 +34,7 @@
         }
         else
         {
-			$data=mysqli_fetch_assoc($res);
+			$data=$res->fetch(PDO::FETCH_ASSOC);
 			?>
 			<form action="saveEditCateg.php?id=<?php echo $_GET['id']; ?>" method="post">
 			<table align="center">

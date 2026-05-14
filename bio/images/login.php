@@ -11,12 +11,12 @@ $login=$_POST['login'];
 $password=$_POST['pass'];
 
 require ("../admin/connexion.php");
-	if($con)
+	if(isset($pdo) && $pdo instanceof PDO)
 	{
 	$requete="SELECT * FROM personne WHERE login='".$login."' AND admin = '1' AND password='".$password."';";
-	$res=mysqli_query($con, $requete);
+	$res=$pdo->query( $requete);
 	
-		if (mysqli_fetch_row($res))
+		if ($res->fetch(PDO::FETCH_NUM))
 		{
 			
 			header ('location: ../admin/ext/index.php');

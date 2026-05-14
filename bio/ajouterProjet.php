@@ -36,10 +36,10 @@
                 <?php 
 				include("includes/dbConnect.php");
 				$query="Select * from categorie";
-				$res=mysqli_query($con, $query);
+				$res=$pdo->query( $query);
 				if($res)
 				{
-					while($data=mysqli_fetch_assoc($res))
+					while($data=$res->fetch(PDO::FETCH_ASSOC))
 					{
 					
 					echo '<option value="'.$data['id'].'">'.utf8_encode($data['label']).'</option>';

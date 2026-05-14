@@ -3,9 +3,9 @@
 	error_reporting(0);
 	include("includes/dbConnect.php");
 	$query="select * from projets";
-	$res=mysqli_query($con, $query);
+	$res=$pdo->query( $query);
 	
-	while($data=mysqli_fetch_assoc($res))
+	while($data=$res->fetch(PDO::FETCH_ASSOC))
 	{
 		$color = ($i % 2) ? '#B8C8FE' : '#E8E8E8';
 		$couleur_police = ($i % 2)  ? '#000000' : '#0069B3';

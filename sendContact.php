@@ -33,19 +33,11 @@ if ($emailValid === false) {
 
 require __DIR__ . '/includes/dbConnect.php';
 
-$stmt = mysqli_prepare($con, 'INSERT INTO contact (nom,prenom,tel,mail,msg,replyed) VALUES (?,?,?,?,?,0)');
-if ($stmt === false) {
-    error_log('sendContact: prepare failed — ' . mysqli_error($con));
-    header('Location: contact.php?msg=failed');
-    exit;
-}
-
-mysqli_stmt_bind_param($stmt, 'sssss', $nom, $prenom, $tel, $emailValid, $msg);
-$ok = mysqli_stmt_execute($stmt);
-mysqli_stmt_close($stmt);
-
-if (!$ok) {
-    error_log('sendContact: insert failed — ' . mysqli_error($con));
+try {
+    $stmt = $pdo->prepare('INSERT INTO contact (nom,prenom,tel,mail,msg,replyed) VALUES (?,?,?,?,?,0)');
+    $stmt->execute([$nom, $prenom, $tel, $emailValid, $msg]);
+} catch (PDOException $e) {
+    error_log('sendContact: insert failed — ' . $e->getMessage());
     header('Location: contact.php?msg=failed');
     exit;
 }

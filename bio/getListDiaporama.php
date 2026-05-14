@@ -1,9 +1,9 @@
 <?php
 	include("includes/dbConnect.php");
 	$query="select * from diaporama";
-	$res=mysqli_query($con, $query) or die(mysqli_error($con));
+	$res=$pdo->query( $query);
 	$i=1;
-	while($data=mysqli_fetch_assoc($res))
+	while($data=$res->fetch(PDO::FETCH_ASSOC))
 	{
 		$color = ($i % 2) ? '#B8C8FE' : '#E8E8E8';
 		$couleur_police = ($i % 2)  ? '#000000' : '#0069B3';

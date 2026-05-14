@@ -31,7 +31,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
 		
 		include("includes/dbConnect.php");
 		$query="update gallerie set path='".$path."' where id='".$_GET['id']."' ";
-		$res=mysqli_query($con, $query) or die(mysqli_error($con));
+		$res=$pdo->query( $query);
 		if(!$res)
 		{
 			echo 'Echec de l\'upload : mise à jour non effectué';

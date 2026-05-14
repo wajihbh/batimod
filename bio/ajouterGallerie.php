@@ -16,10 +16,10 @@
 <?php
 include("includes/dbConnect.php");
 $query="select titre from projets where id='".$_GET['id']."' limit 1";
-$res=mysqli_query($con, $query);
+$res=$pdo->query( $query);
 if($res)
 {
-$data=mysqli_fetch_assoc($res);
+$data=$res->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <div align="center" class="titleRubrique">

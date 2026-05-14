@@ -8,16 +8,16 @@
           <?php 
 		  
 		  $queryCat='select * from categorie';
-		  $resCat=mysqli_query($con, $queryCat);
+		  $resCat=$pdo->query( $queryCat);
 		  if($resCat)
 		  {
-			  while($dataCat=mysqli_fetch_assoc($resCat))
+			  while($dataCat=$resCat->fetch(PDO::FETCH_ASSOC))
 			  {
 				  echo '<li class="has-sub"><a href="detailCategorie.php?cat='.$dataCat['id'].'"><span>'.utf8_encode($dataCat['label']).'</span></a>';
 				  $queryProject='select * from projets where categ='.$dataCat['id'].' and type=1 and active=1';
-				  $resProject=mysqli_query($con, $queryProject);
+				  $resProject=$pdo->query( $queryProject);
 				  echo '<ul>';
-				  while($dataProject=mysqli_fetch_assoc($resProject))
+				  while($dataProject=$resProject->fetch(PDO::FETCH_ASSOC))
 				  {
 					 echo '<li><a href="detailReference.php?id='.$dataProject['id'].'"><span>'.utf8_encode($dataProject['titre']).'</span></a></li>';
 				  }

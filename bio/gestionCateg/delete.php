@@ -9,13 +9,12 @@ if ($id <= 0) {
     exit('Invalid id');
 }
 
-$stmt = mysqli_prepare($con, 'DELETE FROM `categorie` WHERE `id` = ? LIMIT 1');
-if ($stmt === false) {
-    exit(mysqli_error($con));
+try {
+    $stmt = $pdo->prepare('DELETE FROM `categorie` WHERE `id` = ? LIMIT 1');
+    $stmt->execute([$id]);
+    echo $stmt->rowCount() ? 'Row deleted.<br /> ' : 'Nothing deleted.<br /> ';
+} catch (PDOException $e) {
+    exit($e->getMessage());
 }
-mysqli_stmt_bind_param($stmt, 'i', $id);
-mysqli_stmt_execute($stmt);
-echo mysqli_stmt_affected_rows($stmt) ? 'Row deleted.<br /> ' : 'Nothing deleted.<br /> ';
-mysqli_stmt_close($stmt);
 ?>
 <a href='list.php'>Back To Listing</a>

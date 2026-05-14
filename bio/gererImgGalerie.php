@@ -19,8 +19,8 @@
 	include("includes/dbConnect.php");
 	$idProj=$_GET['id'];
 	$query="select titre from projets where id='".$idProj."'";
-	$res=mysqli_query($con, $query);
-	$data=mysqli_fetch_assoc($res);
+	$res=$pdo->query( $query);
+	$data=$res->fetch(PDO::FETCH_ASSOC);
 	?>
     <div align="center">
       <div align="center">

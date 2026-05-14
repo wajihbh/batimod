@@ -4,11 +4,16 @@
             <ul>
             <?php 
 			$query="select * from diaporama where active=1";
-			$res=mysqli_query($con, $query);
+			try {
+				$stmt = $pdo->query($query);
+				$slides = $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+			} catch (PDOException $e) {
+				$slides = [];
+			}
 			
-			if($res && mysqli_num_rows($res) > 0)
+			if(count($slides) > 0)
 			{
-				while($data=mysqli_fetch_assoc($res))
+				foreach($slides as $data)
 				{
 					echo ' <li>
 					<h1 class="main_title">'.utf8_encode($data['titre']).'</h1>

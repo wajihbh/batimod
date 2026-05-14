@@ -4,12 +4,12 @@
 
 	include("includes/dbConnect.php");
 	$query="select * from rubriques";
-	$res=mysqli_query($con, $query);
+	$res=$pdo->query( $query);
 	if($res)
 	{
 		$i=1;
 		echo "<table><tr class='headTable'><td>Catégorie</td><td>Contenu</td><td>Action</td></tr>";
-		while($data=mysqli_fetch_assoc($res))
+		while($data=$res->fetch(PDO::FETCH_ASSOC))
 		{
 		$color = ($i % 2) ? '#B8C8FE' : '#E8E8E8';
 		$couleur_police = ($i % 2)  ? '#000000' : '#0069B3' ;
@@ -29,5 +29,5 @@
 	echo "Données non disponible";
 	}
 	
-	mysqli_close($con);
+	
 ?>

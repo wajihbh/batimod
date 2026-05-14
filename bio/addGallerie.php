@@ -53,7 +53,7 @@ include("includes/dbConnect.php");
 
 $query="insert into gallerie (titre,descr,projet, path,active) values ('".$titre."','".$desc."','".$projet."','".$path."','".$active."')";
 
-$res=mysqli_query($con, $query) or die (mysqli_error($con));
+$res=$pdo->query( $query);
 
 if($res)
 {
@@ -65,5 +65,5 @@ else
 	header("Location: gererImgGalerie.php?id=".$_GET['id']."&err=errorAddGalerie");
 	die();
 }
-mysqli_close($con);
+
 ?>

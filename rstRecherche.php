@@ -27,7 +27,7 @@
 
 declare(strict_types=1);
 
-if (!isset($con) || !$con instanceof mysqli) {
+if (!isset($pdo) || !$pdo instanceof PDO) {
     require __DIR__ . '/includes/dbConnect.php';
 }
 
@@ -42,41 +42,39 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['rech'])) {
     if ($motRaw === '') {
         echo '<p>Terme de recherche vide.</p>';
     } else {
-        $stmt = mysqli_prepare(
-            $con,
-            'SELECT id, titre, descr, type FROM projets WHERE descr LIKE CONCAT(\'%\', ?, \'%\')'
-        );
-        if ($stmt === false) {
+        try {
+            $stmt = $pdo->prepare(
+                'SELECT id, titre, descr, type FROM projets WHERE descr LIKE CONCAT(\'%\', ?, \'%\')'
+            );
+            $stmt->execute([$motRaw]);
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
             echo '<p>Erreur lors de la recherche.</p>';
-        } else {
-            mysqli_stmt_bind_param($stmt, 's', $motRaw);
-            mysqli_stmt_execute($stmt);
-            $requete = mysqli_stmt_get_result($stmt);
-            mysqli_stmt_close($stmt);
+            $rows = [];
+        }
 
-            $h = static function (?string $s): string {
-                return htmlspecialchars((string) $s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-            };
-            $motDisp = $h($motRaw);
+        $h = static function (?string $s): string {
+            return htmlspecialchars((string) $s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+        };
+        $motDisp = $h($motRaw);
 
-            if ($requete && mysqli_num_rows($requete) > 0) {
-                $nb_total = mysqli_num_rows($requete);
-                echo '<b>' . (int) $nb_total . '</b> réponse(s) trouvée(s) pour <b>' . $motDisp . '</b><br>';
+        if (count($rows) > 0) {
+            $nb_total = count($rows);
+            echo '<b>' . $nb_total . '</b> réponse(s) trouvée(s) pour <b>' . $motDisp . '</b><br>';
 
-                while ($data = mysqli_fetch_assoc($requete)) {
-                    $type = (int) ($data['type'] ?? 0);
-                    $url = $type === 1
-                        ? 'detailReference.php?id=' . (int) ($data['id'] ?? 0)
-                        : 'projet-cours.php';
-                    $titre = $h(batimod_utf8_encode((string) ($data['titre'] ?? '')));
-                    $descr = $h(batimod_utf8_encode((string) ($data['descr'] ?? '')));
-                    $urlDisp = $h($url);
-                    echo '<br><br><a href="' . $h($url) . '"><b>' . $titre . '</b></a><br>' . $descr . '<br><font size="1">' . $urlDisp . '</font><br>';
-                }
-                echo '<br><br>';
-            } else {
-                echo 'Désolé, aucune page de ce site ne contient <b>' . $motDisp . '</b>...';
+            foreach ($rows as $data) {
+                $type = (int) ($data['type'] ?? 0);
+                $url = $type === 1
+                    ? 'detailReference.php?id=' . (int) ($data['id'] ?? 0)
+                    : 'projet-cours.php';
+                $titre = $h(batimod_utf8_encode((string) ($data['titre'] ?? '')));
+                $descr = $h(batimod_utf8_encode((string) ($data['descr'] ?? '')));
+                $urlDisp = $h($url);
+                echo '<br><br><a href="' . $h($url) . '"><b>' . $titre . '</b></a><br>' . $descr . '<br><font size="1">' . $urlDisp . '</font><br>';
             }
+            echo '<br><br>';
+        } else {
+            echo 'Désolé, aucune page de ce site ne contient <b>' . $motDisp . '</b>...';
         }
     }
 }

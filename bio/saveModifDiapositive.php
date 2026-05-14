@@ -29,7 +29,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
 			    redimensionner_image('../'.$path, 931,328);
 				
 				$query="update diaporama set img='".$fichier."' where id='".$_GET['id']."' ";
-				$res=mysqli_query($con, $query) or die(mysqli_error($con));
+				$res=$pdo->query( $query);
 				if(!$res)
 				{
 					echo 'Echec de l\'upload : mise à jour non effectué';

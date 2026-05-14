@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-if (!isset($con) || !$con instanceof mysqli) {
+if (!isset($pdo) || !$pdo instanceof PDO) {
     require __DIR__ . '/includes/dbConnect.php';
 }
 
@@ -13,20 +13,15 @@ if ($id <= 0) {
     return;
 }
 
-$stmt = mysqli_prepare(
-    $con,
-    'SELECT titre, descr, img FROM projets WHERE id = ? AND active = 1 LIMIT 1'
-);
-if ($stmt === false) {
+try {
+    $stmt = $pdo->prepare('SELECT titre, descr, img FROM projets WHERE id = ? AND active = 1 LIMIT 1');
+    $stmt->execute([$id]);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
     echo '<div class="error">Aucune information trouvée</div>';
 
     return;
 }
-mysqli_stmt_bind_param($stmt, 'i', $id);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-$data = $result ? mysqli_fetch_assoc($result) : false;
-mysqli_stmt_close($stmt);
 
 if ($data === false || $data === null) {
     echo '<div class="error">Aucune information trouvée</div>';

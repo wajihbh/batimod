@@ -1,12 +1,17 @@
 <?php
 
-	
-	$query="select * from gallerie where projet='".$idProj."'";
-	$res=mysqli_query($con, $query);
+	$idProjInt = (int) $idProj;
+	try {
+		$stmt = $pdo->prepare('select * from gallerie where projet = ?');
+		$stmt->execute([$idProjInt]);
+		$galleryRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	} catch (PDOException $e) {
+		$galleryRows = [];
+	}
 	$i=1;
-	if(mysqli_num_rows($res)>0)
+	if(count($galleryRows)>0)
 	{
-		while($data=mysqli_fetch_assoc($res))
+		foreach($galleryRows as $data)
 		{
 			$color = ($i % 2) ? '#B8C8FE' : '#E8E8E8';
 			$couleur_police = ($i % 2)  ? '#000000' : '#0069B3';

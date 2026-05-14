@@ -35,10 +35,10 @@ window.open (nom_de_la_page, nom_interne_de_la_fenetre, config='height=100, widt
 <?php
 include("includes/dbConnect.php");
 $query="select * from masse where id='".$_GET['id']."' limit 1";
-$res=mysqli_query($con, $query);
+$res=$pdo->query( $query);
 if($res)
 {
-$data=mysqli_fetch_assoc($res);
+$data=$res->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <form action="savePlanMasse.php?id=<?php echo $data['id']; ?>" method="post" name="editGal">

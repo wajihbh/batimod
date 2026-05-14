@@ -24,30 +24,28 @@
     <div id="block">
       <?php 
 	$query='select * from projets where type=2 and active=1';
-	$res=mysqli_query($con, $query);
+	try {
+		$stmt = $pdo->query($query);
+		$rows = $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+	} catch (PDOException $e) {
+		$rows = [];
+	}
 	
-	if($res)
+	if(count($rows) > 0)
 	{
-		if(mysqli_num_rows($res)>0)
+		foreach($rows as $data)
 		{
-			while($data=mysqli_fetch_assoc($res))
-			{
-			
+		
 			echo '<div class="sous-block3"> 
 					<img class="img-sous-block3" src="images/'.$data['img'].'" /> 
 					<font>'.utf8_encode($data['titre']).' :</font>
         		  	<p class="style7">'.utf8_encode($data['descr']).'</p>
       			  </div>';
-			}
-		}
-		else
-		{
-			echo 'Aucun projets en cours pour le moments';
 		}
 	}
 	else
 	{
-	echo 'Erreur : Données inacessible';
+		echo 'Aucun projets en cours pour le moments';
 	}
 	
 	?>

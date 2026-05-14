@@ -4,7 +4,8 @@
     "license": "proprietary",
     "require": {
         "php": ">=8.2",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "ext-pdo": "*"
     },
     "config": {
         "optimize-autoloader": true,

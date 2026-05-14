@@ -1,10 +1,10 @@
 <?php
 include("getConnexion.php");
 $query="select * from adminuser where zLogin='".$_SESSION['userLogin']."' and zpasshash='".$_SESSION['userPass']."' limit 1";
-$res=mysqli_query($con, $query);
+$res=$pdo->query( $query);
 if($res)
 {
-$data=mysqli_fetch_assoc($res);
+$data=$res->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <table width="678" height="190" border="0">

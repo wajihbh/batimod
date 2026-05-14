@@ -28,10 +28,10 @@
 
 include("includes/dbConnect.php");
 $query="select * from rubriques where id='".$_GET['id']."' limit 1";
-$res=mysqli_query($con, $query) or die(mysqli_error($con));
+$res=$pdo->query( $query);
 if($res)
 {
-$data=mysqli_fetch_assoc($res);
+$data=$res->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <table width="980" height="190" border="0" align="center">

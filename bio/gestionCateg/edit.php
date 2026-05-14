@@ -15,27 +15,25 @@ $h = static function (?string $s): string {
 
 if (isset($_POST['submitted'])) {
     $label = isset($_POST['label']) ? (string) $_POST['label'] : '';
-    $stmt = mysqli_prepare($con, 'UPDATE `categorie` SET `label` = ? WHERE `id` = ? LIMIT 1');
-    if ($stmt === false) {
-        exit(mysqli_error($con));
+    try {
+        $stmt = $pdo->prepare('UPDATE `categorie` SET `label` = ? WHERE `id` = ? LIMIT 1');
+        $stmt->execute([$label, $id]);
+        echo $stmt->rowCount() ? 'Edited row.<br />' : 'Nothing changed. <br />';
+    } catch (PDOException $e) {
+        exit($e->getMessage());
     }
-    mysqli_stmt_bind_param($stmt, 'si', $label, $id);
-    mysqli_stmt_execute($stmt);
-    echo mysqli_stmt_affected_rows($stmt) ? 'Edited row.<br />' : 'Nothing changed. <br />';
-    mysqli_stmt_close($stmt);
     echo "<a href='list.php'>Back To Listing</a>";
 }
 
-$stmt = mysqli_prepare($con, 'SELECT `label` FROM `categorie` WHERE `id` = ? LIMIT 1');
-if ($stmt === false) {
-    exit(mysqli_error($con));
+try {
+    $stmt = $pdo->prepare('SELECT `label` FROM `categorie` WHERE `id` = ? LIMIT 1');
+    $stmt->execute([$id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    exit($e->getMessage());
 }
-mysqli_stmt_bind_param($stmt, 'i', $id);
-mysqli_stmt_execute($stmt);
-$res = mysqli_stmt_get_result($stmt);
-$row = $res ? mysqli_fetch_assoc($res) : null;
-mysqli_stmt_close($stmt);
-if ($row === null) {
+
+if ($row === false || $row === null) {
     exit('Row not found');
 }
 

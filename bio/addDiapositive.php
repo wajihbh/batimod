@@ -49,7 +49,7 @@ if(isset($_FILES['image']) && $_FILES['image']!="")
 include("includes/dbConnect.php");
 
 $query="insert into diaporama(titre, descr, img,active) values ('".utf8_decode(addslashes($titre))."','".utf8_decode(addslashes($desc))."','".$fichier."','".$active."')";
-$res=mysqli_query($con, $query) or die (mysqli_error($con));
+$res=$pdo->query( $query);
 
 if($res)
 {
@@ -61,5 +61,5 @@ else
 	header("Location: gestionDiaporama.php?err=errorAddDiap");
 	die();
 }
-mysqli_close($con);
+
 ?>

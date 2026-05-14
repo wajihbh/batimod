@@ -27,7 +27,7 @@
 include("includes/dbConnect.php");
 $idContact=$_GET['id'];
 $query="Select * from contact where id='".$idContact."' limit 1";
-$res=mysqli_query($con, $query);
+$res=$pdo->query( $query);
 
 if(!$res)
 {
@@ -35,7 +35,7 @@ echo "Impossible de récupérer les informations du contact";
 }
 else
 {
-$data=mysqli_fetch_assoc($res);
+$data=$res->fetch(PDO::FETCH_ASSOC);
 
  ?>
 <br />
@@ -73,10 +73,10 @@ $data=mysqli_fetch_assoc($res);
 	if($data['replyed']=="1")
 	{
 	$queryResponse="Select * from reponseContact where id='".$idContact."' limit 1";
-	$resRep=mysqli_query($con, $queryResponse);
+	$resRep=$pdo->query( $queryResponse);
 	if($resRep)
 	{
-	$newdata=mysqli_fetch_assoc($resRep);
+	$newdata=$resRep->fetch(PDO::FETCH_ASSOC);
 	?>
             <table width="410" height="227" border="0" align="center" cellpadding="0" cellspacing="1" style="border:#999999 3px  double" >
               <tr>
@@ -173,7 +173,7 @@ $data=mysqli_fetch_assoc($res);
     </table>
 <?php
 }
-mysqli_close($con);
+
 ?>
     
     <p align="center"> <a href="gestionContact.php" class="linkMenu"><img src="images/back.gif" width="16" height="16" border="0" /> &nbsp;Retour à la liste des contacts</a></p>

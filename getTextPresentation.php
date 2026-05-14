@@ -1,9 +1,9 @@
 <?php 
 $query="Select * from rubriques where categ='home' limit 1";
-$res=mysqli_query($con, $query);
+$res=$pdo->query( $query);
 if($res)
 {
-	$data=mysqli_fetch_assoc($res);
+	$data=$res->fetch(PDO::FETCH_ASSOC);
 	echo utf8_encode($data['descr']);
 }
 else

@@ -27,18 +27,23 @@
     <div id="block">
       
       
-      <?php 
+      <?php
 	  $query="select * from projets where type='1' order by id desc";
-	  $res=mysqli_query($con, $query);
-	  if($res)
+	  try {
+		  $stmt = $pdo->query($query);
+		  $rows = $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+	  } catch (PDOException $e) {
+		  $rows = [];
+	  }
+	  if(count($rows) > 0)
 	  {
 		  $i=0;
 		  $k=1;
 		  echo '<article>';
 		  echo '<section id="'.$k.'">';
-		  $tot=mysqli_num_rows($res);
+		  $tot=count($rows);
 		  $pagination='<li ><a href="#1" class="tab">1</a></li>';
-		  while($data=mysqli_fetch_assoc($res))
+		  foreach($rows as $data)
 		  {
 			  $i++;
 			  echo '<div class="sous-block1"> <img class="img-sous-block1" src="images/'.$data['img'].'" /> <font>'.utf8_encode($data['titre']).'</font>

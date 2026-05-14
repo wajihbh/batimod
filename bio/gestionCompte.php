@@ -28,10 +28,10 @@
 
 include("includes/dbConnect.php");
 $query="select * from adminuser where login='".$_SESSION['userLogin']."' and hashpass='".$_SESSION['userPass']."' limit 1";
-$res=mysqli_query($con, $query);
+$res=$pdo->query( $query);
 if($res)
 {
-$data=mysqli_fetch_assoc($res);
+$data=$res->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <table width="678" height="190" border="0" align="center">

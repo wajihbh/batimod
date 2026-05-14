@@ -7,7 +7,7 @@ include("includes/dbConnect.php");
 if(isset($_POST['nom']) && $_POST['nom']!="")
 {
 	$query="Update adminuser set nom='".$_POST['nom']."' where idCompte='".base64_decode($_POST['id'])."' limit 1";
-	$res=mysqli_query($con, $query);
+	$res=$pdo->query( $query);
 	if(!$res)
 	{
 	header("Location: gestionCompte.php?err=LastNameLoggerError");
@@ -18,7 +18,7 @@ if(isset($_POST['nom']) && $_POST['nom']!="")
 if(isset($_POST['prenom']) && $_POST['prenom']!="")
 {
 	$query="Update adminuser set prenom='".$_POST['prenom']."' where idCompte='".base64_decode($_POST['id'])."' limit 1";
-	$res=mysqli_query($con, $query);
+	$res=$pdo->query( $query);
 	if(!$res)
 	{
 	header("Location: gestionCompte.php?err=FirstNameLoggerError");
@@ -29,7 +29,7 @@ if(isset($_POST['prenom']) && $_POST['prenom']!="")
 if(isset($_POST['login']) && $_POST['login']!="")
 {
 	$query="Update adminuser set login='".$_POST['login']."' where idCompte='".base64_decode($_POST['id'])."' limit 1";
-	$res=mysqli_query($con, $query);
+	$res=$pdo->query( $query);
 	if(!$res)
 	{
 		header("Location: gestionCompte.php?err=LoginLoggerError");
@@ -44,7 +44,7 @@ if(isset($_POST['login']) && $_POST['login']!="")
 if(isset($_POST['mdp']) && $_POST['mdp']!="")
 {
 	$query="Update adminuser set pass='".$_POST['mdp']."', hashpass='".md5($_POST['mdp'])."' where idCompte='".base64_decode($_POST['id'])."' limit 1";
-	$res=mysqli_query($con, $query);
+	$res=$pdo->query( $query);
 	if(!$res)
 	{
 		header("Location: gestionCompte.php?err=PassLoggerError");
@@ -56,7 +56,7 @@ if(isset($_POST['mdp']) && $_POST['mdp']!="")
 	}
 }
 
-mysqli_close($con);
+
 header("Location: gestionCompte.php?err=SucessLoggerApt");
 die();
 

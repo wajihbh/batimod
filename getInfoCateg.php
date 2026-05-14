@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-if (!isset($con) || !$con instanceof mysqli) {
+if (!isset($pdo) || !$pdo instanceof PDO) {
     require __DIR__ . '/includes/dbConnect.php';
 }
 
@@ -17,17 +17,15 @@ $h = static function (?string $s): string {
     return htmlspecialchars((string) $s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 };
 
-$stmt = mysqli_prepare($con, 'SELECT label FROM categorie WHERE id = ? LIMIT 1');
-if ($stmt === false) {
+try {
+    $stmt = $pdo->prepare('SELECT label FROM categorie WHERE id = ? LIMIT 1');
+    $stmt->execute([$categ]);
+    $dataCateg = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
     echo '<div class="error">Aucune information trouvée</div>';
 
     return;
 }
-mysqli_stmt_bind_param($stmt, 'i', $categ);
-mysqli_stmt_execute($stmt);
-$resCateg = mysqli_stmt_get_result($stmt);
-$dataCateg = $resCateg ? mysqli_fetch_assoc($resCateg) : false;
-mysqli_stmt_close($stmt);
 
 if ($dataCateg === false || $dataCateg === null) {
     echo '<div class="error">Aucune information trouvée</div>';
@@ -40,28 +38,24 @@ $label = batimod_utf8_encode((string) ($dataCateg['label'] ?? ''));
 <h2><?php echo $h($label); ?></h2>
 <div id="block2">
 <?php
-$stmt2 = mysqli_prepare(
-    $con,
-    'SELECT id, titre, descr, img, type FROM projets WHERE categ = ? AND active = 1'
-);
-if ($stmt2 === false) {
+try {
+    $stmt2 = $pdo->prepare('SELECT id, titre, descr, img, type FROM projets WHERE categ = ? AND active = 1');
+    $stmt2->execute([$categ]);
+    $projets = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
     echo '<div class="error">Aucune information trouvée</div>';
 
     return;
 }
-mysqli_stmt_bind_param($stmt2, 'i', $categ);
-mysqli_stmt_execute($stmt2);
-$resProj = mysqli_stmt_get_result($stmt2);
-mysqli_stmt_close($stmt2);
 
-if ($resProj && mysqli_num_rows($resProj) > 0) {
+if (count($projets) > 0) {
     $i = 0;
     $k = 1;
     echo '<article>';
     echo '<section id="' . $k . '">';
 
     $pagination = '<li ><a href="#' . $k . '" class="tab">' . $k . '</a></li>';
-    while ($dataProj = mysqli_fetch_assoc($resProj)) {
+    foreach ($projets as $dataProj) {
         $i++;
         $titre = $h(batimod_utf8_encode((string) ($dataProj['titre'] ?? '')));
         $descr = $h(batimod_utf8_encode((string) ($dataProj['descr'] ?? '')));

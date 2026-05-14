@@ -33,10 +33,10 @@ function affichage_popup(nom_de_la_page, nom_interne_de_la_fenetre)
 <?php
 include("includes/dbConnect.php");
 $query="select * from projets where id='".$_GET['id']."' limit 1";
-$res=mysqli_query($con, $query);
+$res=$pdo->query( $query);
 if($res)
 {
-$data=mysqli_fetch_assoc($res);
+$data=$res->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <form action="saveProjet.php?id=<?php echo $data['id']; ?>" method="post">
@@ -71,9 +71,9 @@ $data=mysqli_fetch_assoc($res);
 	 <?php 
 	 
 	 $queryCateg='select * from categorie';
-	 $resCateg=mysqli_query($con, $queryCateg);
+	 $resCateg=$pdo->query( $queryCateg);
 	 
-	 while($dataCat=mysqli_fetch_assoc($resCateg))
+	 while($dataCat=$resCateg->fetch(PDO::FETCH_ASSOC))
 	 {
 		 if($dataCat['id']==$data['categ'])
 		 {
