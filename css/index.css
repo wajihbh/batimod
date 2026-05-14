@@ -1,0 +1,91 @@
+/************************* PAGINATION **************************************/
+.paginationTG{
+float: left;
+font:11px Tahoma, Verdana, Arial, "Trebuchet MS", Helvetica, sans-serif;
+ color:#3d3d3d;
+margin-top: 20px;
+margin-left:427px;
+margin-right:auto;
+width:100%;
+}
+
+.paginationTG ul{
+margin: 0;
+padding: 0;
+}
+
+.paginationTG li{
+list-style-type: none;
+display: inline;
+padding-bottom: 1px;
+}
+
+.paginationTG a, .paginationTG a:visited{
+padding: 5px 8px;
+text-decoration: none; 
+background-color: inherit;
+color: #0191D0;
+font-weight: bold;
+}
+
+.paginationTG a:hover, .paginationTG a:active{
+color: #ffffff;
+background-image:url(../images/pagination_bg.png);
+background-position: top center;
+background-repeat: no-repeat;
+text-decoration: none; 
+}
+
+.paginationTG li.currentpage{
+font-weight: bold;
+padding: 5px 9px;
+background-color: inherit;
+color: #ffffff;
+background-image: url(../images/pagination_bg.png);
+background-position: top center;
+background-repeat: no-repeat;
+}
+
+.paginationTG li.disablepage{
+padding: 0 5px;
+border: 1px solid #929292;
+color: #929292;
+}
+
+.paginationTG li.nextpage{
+font-weight: bold;
+}
+
+* html .paginationTG li.currentpage, * html .paginationTG li.disablepage{ /*IE 6 and below. Adjust non linked LIs slightly to account for bugs*/
+padding-right: 9px;
+padding-left: 9px;
+}
+
+.info, .success, .warning, .error, .validation {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding:15px 10px 15px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+.info {
+	color: #00529B;
+	background-color: #BDE5F8;
+	background-image: url('../images/info.png');
+}
+.success {
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	background-image:url('../images/success.png');
+}
+.warning {
+	color: #9F6000;
+	background-color: #FEEFB3;
+	background-image: url('../images/warning.png');
+}
+.error {
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('../images/error.png');
+}
+/************************* PAGINATION **************************************/

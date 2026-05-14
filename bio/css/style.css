@@ -1,0 +1,91 @@
+
+.summerTitle {font-size: 36px;color:#0099CC;font-family: Georgia, "Times New Roman", Times, serif;font-weight: bold;font-style: italic;}
+.buttonMenu{border:#999999 double 3px; background-color:#FFFFFF; color:#666666; height:22px; font-size:11px;}
+.linkMenu {color: #666666; font-size:11px; font-family:Arial, Helvetica, sans-serif; text-shadow:#0066FF ; text-decoration:none;}
+.linkMenu:hover {color:#0099CC; font-size:11px; font-family:Arial, Helvetica, sans-serif; text-shadow:#0066FF ;}
+.copyRight {color: #999999;font-size: x-small;}
+.Style1 {
+	font-size: 18px;
+	color: #0099CC;
+	font-weight: bold;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.Style5 {font-size: 14px; color: #0066CC; }
+
+.linkMenu {color: #666666; font-size:11px; font-family:Arial, Helvetica, sans-serif; text-shadow:#0066FF ; text-decoration:none;}
+.titleMenu {
+	color: #336600;
+	font-weight: bold;
+	font-size: 14px;
+	font-family: "Courier New", Courier, monospace;
+	font-style: italic;
+}
+
+.Style1 {
+	font-size: xx-large;
+	font-weight: bold;
+	font-style: italic;
+	color: #666666;
+}
+.msgAcceuil
+{
+
+font-size:14px;
+font-weight: bold;
+font-style: italic;
+color: #666666;
+}
+
+.userName
+{
+color:#666666;
+font-family:Arial, Helvetica, sans-serif;
+font-size:14px;
+font-weight:800;
+text-decoration:none;
+}
+.entetHeader
+{
+background-color:#EDFEB4;
+width:100%;
+height:100%;
+margin-top:0px;
+margin-bottom:0px;
+
+}
+
+
+.info, .success, .warning, .error, .validation {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding:15px 10px 15px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+.info {
+	color: #00529B;
+	background-color: #BDE5F8;
+	background-image: url('../images/info.png');
+}
+.success {
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	background-image:url('../images/success.png');
+}
+.warning {
+	color: #9F6000;
+	background-color: #FEEFB3;
+	background-image: url('../images/warning.png');
+}
+.error {
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('../images/error.png');
+}
+.bakgrnTitleCol 
+{
+background-color:#0099FF;
+color:#FFFFFF;}
+.headTable
+{background-color:#0099FF;
+color:#FFFFFF;}
