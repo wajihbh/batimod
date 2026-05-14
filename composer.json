@@ -3,8 +3,7 @@
     "description": "BATIMOD public and admin PHP site",
     "license": "proprietary",
     "require": {
-        "php": ">=8.2",
-        "phpmailer/phpmailer": "^6.9"
+        "php": ">=8.2"
     },
     "config": {
         "optimize-autoloader": true,

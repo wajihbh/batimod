@@ -1,18 +1,27 @@
 <?php
 include("headerInfo.php");
-include('includes/PHPMailer/class.phpmailer.php');
 
-$mail             = new PHPMailer(); // defaults to using php "mail()"
-$body             = $_POST['reponse'];
-$mail->From       = "contact@afrique-beton.com";
-$mail->FromName   = "Afrique Beton";
-$mail->Subject    ="R&eacute;ponse &aacute; votre contact";
-$mail->MsgHTML($body);
-$mail->AddAddress($_POST['emailClient'],"Cher Client");
+$to = isset($_POST['emailClient']) ? trim((string) $_POST['emailClient']) : '';
+if ($to === '' || filter_var($to, FILTER_VALIDATE_EMAIL) === false) {
+	header("Location: gestionContact.php?err=failedSendingReply");
+	die();
+}
 
-if(!$mail->Send()) 
+$body = (string) ($_POST['reponse'] ?? '');
+$subject = 'Réponse à votre contact';
+$mailSafeHeader = static function (string $v): string {
+	return str_replace(["\r", "\n"], '', $v);
+};
+$headers = [
+	'MIME-Version: 1.0',
+	'Content-Type: text/html; charset=UTF-8',
+	'From: ' . $mailSafeHeader('Afrique Beton <contact@afrique-beton.com>'),
+];
+
+$encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+
+if (!@mail($to, $encodedSubject, $body, implode("\r\n", $headers)))
 {
-	//echo "Mailer Error: " . $mail->ErrorInfo;
 	header("Location: gestionContact.php?err=failedSendingReply");
 	die();
 }
