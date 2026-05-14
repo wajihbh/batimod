@@ -12,10 +12,11 @@
 <script  type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
+<?php include('includes/dbConnect.php'); ?>
+
 </div>
 <div id="page">
   <?php 
-    include('includes/dbConnect.php'); 
     include('header.php'); 
     ?>
   <div id="content">
