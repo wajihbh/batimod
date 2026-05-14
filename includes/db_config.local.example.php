@@ -11,5 +11,5 @@ return [
     'host' => getenv('BATIMOD_DB_HOST') ?: 'batimodmain.mysql.db',
     'user' => getenv('BATIMOD_DB_USER') ?: 'batimodmain',
     'password' => getenv('BATIMOD_DB_PASSWORD') ?: 'MRJDk30CtSv4GIBDGoMI',
-    'database' => getenv('BATIMOD_DB_NAME') ?: 'batimod',
+    'database' => getenv('BATIMOD_DB_NAME') ?: 'batimodmain',
 ];
