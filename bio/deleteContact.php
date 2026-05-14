@@ -1,7 +1,7 @@
 <?php 
 
 include("headerInfo.php"); 
-include("includes/dbConnect.php");
+require_once __DIR__ . '/../includes/dbConnect.php';
 $query="Delete from contact where id='".$_GET['id']."' limit 1";
 $res=$pdo->query( $query);
 if($res)

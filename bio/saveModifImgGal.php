@@ -29,7 +29,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
 		$path="images/gallerie/".$_FILES['repImg']['name'];
 		redimensionner_image('../'.$path, 800,600);
 		
-		include("includes/dbConnect.php");
+		require_once __DIR__ . '/../includes/dbConnect.php';
 		$query="update gallerie set path='".$path."' where id='".$_GET['id']."' ";
 		$res=$pdo->query( $query);
 		if(!$res)

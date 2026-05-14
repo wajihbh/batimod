@@ -2,7 +2,7 @@
 
 
 include("headerInfo.php");
-include("includes/dbConnect.php");
+require_once __DIR__ . '/../includes/dbConnect.php';
 
 if(isset($_POST['nom']) && $_POST['nom']!="")
 {

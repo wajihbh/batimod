@@ -49,7 +49,7 @@ if(isset($_FILES['image']) && $_FILES['image']!="")
 }
 
 
-include("includes/dbConnect.php");
+require_once __DIR__ . '/../includes/dbConnect.php';
 
 $query="insert into gallerie (titre,descr,projet, path,active) values ('".$titre."','".$desc."','".$projet."','".$path."','".$active."')";
 

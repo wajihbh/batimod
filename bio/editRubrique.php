@@ -26,7 +26,7 @@
     <td width="958" valign="top">
 <?php
 
-include("includes/dbConnect.php");
+require_once __DIR__ . '/../includes/dbConnect.php';
 $query="select * from rubriques where id='".$_GET['id']."' limit 1";
 $res=$pdo->query( $query);
 if($res)

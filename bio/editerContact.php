@@ -24,7 +24,7 @@
     <td width="1023" valign="top">
     
 <?php
-include("includes/dbConnect.php");
+require_once __DIR__ . '/../includes/dbConnect.php';
 $idContact=$_GET['id'];
 $query="Select * from contact where id='".$idContact."' limit 1";
 $res=$pdo->query( $query);

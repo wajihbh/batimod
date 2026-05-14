@@ -1,7 +1,7 @@
 <?php
 
 	error_reporting(0);
-	include("includes/dbConnect.php");
+	require_once __DIR__ . '/../includes/dbConnect.php';
 	$query="select * from projets";
 	$res=$pdo->query( $query);
 	

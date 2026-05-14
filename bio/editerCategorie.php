@@ -23,7 +23,7 @@
     <td width="87" ><?php include("rightCol.php"); ?></td>
     <td width="1023" valign="top">
 		<?php
-        include("includes/dbConnect.php");
+        require_once __DIR__ . '/../includes/dbConnect.php';
         $id=$_GET['id'];
         $query="Select * from categorie where id='".$id."' limit 1";
         $res=$pdo->query( $query);

@@ -16,7 +16,7 @@
     <td height="38" colspan="3">
     <?php 
     error_reporting(0);
-	include("includes/dbConnect.php");
+	require_once __DIR__ . '/../includes/dbConnect.php';
 	$idProj=$_GET['id'];
 	$query="select titre from projets where id='".$idProj."'";
 	$res=$pdo->query( $query);

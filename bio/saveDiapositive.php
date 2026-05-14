@@ -1,6 +1,6 @@
 <?php
 include("headerInfo.php"); 
-include("includes/dbConnect.php");
+require_once __DIR__ . '/../includes/dbConnect.php';
 $id=$_GET['id'];
 
 $query="Update diaporama set titre='".utf8_decode(addslashes($_POST['titre']))."', descr='".utf8_decode(addslashes($_POST['desc']))."' where id='".$id."'";

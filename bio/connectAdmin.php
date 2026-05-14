@@ -19,7 +19,7 @@ if ($pass === '') {
     exit;
 }
 
-require __DIR__ . '/includes/dbConnect.php';
+require_once __DIR__ . '/../includes/dbConnect.php';
 
 $hash = md5($pass);
 

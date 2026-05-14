@@ -34,7 +34,7 @@
             <td>Catégorie :</td>
             <td><select name="categ">
                 <?php 
-				include("includes/dbConnect.php");
+				require_once __DIR__ . '/../includes/dbConnect.php';
 				$query="Select * from categorie";
 				$res=$pdo->query( $query);
 				if($res)

@@ -34,7 +34,7 @@ if (!@mail($to, $encodedSubject, $body, implode("\r\n", $headers))) {
     exit;
 }
 
-require __DIR__ . '/includes/dbConnect.php';
+require_once __DIR__ . '/../includes/dbConnect.php';
 
 try {
     $pdo->beginTransaction();
