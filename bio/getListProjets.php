@@ -15,11 +15,11 @@
 		echo "
 		<tr bgcolor='".$color."' align='center'>
 		<td><font color=\"".$couleur_police."\">".$data['id']."</font></td>
-		<td><font color=\"".$couleur_police."\">".utf8_encode($data['titre'])."</font></td>
-		<td><font color=\"".$couleur_police."\">".utf8_encode(substr($data['descr'],0,150))."</font></td>
+		<td><font color=\"".$couleur_police."\">".batimod_utf8_encode($data['titre'])."</font></td>
+		<td><font color=\"".$couleur_police."\">".batimod_utf8_encode(substr($data['descr'],0,150))."</font></td>
 		<td><font color=\"".$couleur_police."\"><img src='../images/".$data['img']."' /></font></td>
-		<td><font color=\"".$couleur_police."\">".utf8_encode($data['Emplacement'])."</font></td>
-		<td><font color=\"".$couleur_police."\">".utf8_encode($data['categ'])."</font></td>";
+		<td><font color=\"".$couleur_police."\">".batimod_utf8_encode($data['Emplacement'])."</font></td>
+		<td><font color=\"".$couleur_police."\">".batimod_utf8_encode($data['categ'])."</font></td>";
 		
 		if($data['type']=='1'){$type='REF';}else{$type='PEC';}
 		

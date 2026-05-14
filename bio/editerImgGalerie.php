@@ -45,8 +45,8 @@ $data=$res->fetch(PDO::FETCH_ASSOC);
 
   <table width="730" height="140"   border="0" align="center" cellpadding="0" cellspacing="0" >
      
-     <tr><td width="180">Titre : </td><td><input type='text' value="<?php echo utf8_encode($data['titre']); ?>" name='titre' size="39"/></td></tr>
-     <tr><td>Description : </td><td><textArea name='desc' cols="70" rows="9"><?php echo utf8_encode($data['descr']); ?></textArea></td></tr>
+     <tr><td width="180">Titre : </td><td><input type='text' value="<?php echo batimod_utf8_encode($data['titre']); ?>" name='titre' size="39"/></td></tr>
+     <tr><td>Description : </td><td><textArea name='desc' cols="70" rows="9"><?php echo batimod_utf8_encode($data['descr']); ?></textArea></td></tr>
      <tr><td>Image Actuel : </td><td><img src="../<?php echo $data['path']; ?>"  /><br /> <a href="javascript:affichage_popup('modifierImgGallerie.php?id=<?php echo $data['id']; ?>','Modifier IMG');">Modifier</a><br /><br /></td></tr>    
      <tr><td><input type="submit" Value='Enregister'/></td><td><input type="reset" Value='Annuler'/></td></tr>
     </table>

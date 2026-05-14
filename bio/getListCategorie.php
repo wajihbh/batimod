@@ -14,7 +14,7 @@ if($res)
 	echo "
 	<tr bgcolor='".$color."' align='center'>
 		<td><font color=\"".$couleur_police."\">".$i."</font></td>
-		<td><font color=\"".$couleur_police."\">".utf8_encode($data['label'])."</font></td>
+		<td><font color=\"".$couleur_police."\">".batimod_utf8_encode($data['label'])."</font></td>
 		<td align='center'>
 			<a href='editerCategorie.php?id=".$data['id']."' title='Editer' ><img src='images/edit.png' border=0/></a>
 			&nbsp;&nbsp;<a href='deleteCategorie.php?id=".$data['id']."' title='Supprimer'><img src='images/delete.png' border=0/></a>&nbsp;&nbsp;

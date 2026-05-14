@@ -4,7 +4,7 @@ $res=$pdo->query( $query);
 if($res)
 {
 	$data=$res->fetch(PDO::FETCH_ASSOC);
-	echo utf8_encode($data['descr']);
+	echo batimod_utf8_encode($data['descr']);
 }
 else
 {

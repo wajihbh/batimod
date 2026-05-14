@@ -3,7 +3,7 @@ include("headerInfo.php");
 require_once __DIR__ . '/../includes/dbConnect.php';
 $id=$_GET['id'];
 
-$query="Update diaporama set titre='".utf8_decode(addslashes($_POST['titre']))."', descr='".utf8_decode(addslashes($_POST['desc']))."' where id='".$id."'";
+$query="Update diaporama set titre='".batimod_utf8_decode(addslashes($_POST['titre']))."', descr='".batimod_utf8_decode(addslashes($_POST['desc']))."' where id='".$id."'";
 
 $res=$pdo->query( $query);
 

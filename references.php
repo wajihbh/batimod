@@ -46,8 +46,8 @@
 		  foreach($rows as $data)
 		  {
 			  $i++;
-			  echo '<div class="sous-block1"> <img class="img-sous-block1" src="images/'.$data['img'].'" /> <font>'.utf8_encode($data['titre']).'</font>
-				<p class="style7">'.utf8_encode($data['descr']).'...<a class="lien" href="detailReference.php?id='.$data['id'].'">Voir+</a></p>
+			  echo '<div class="sous-block1"> <img class="img-sous-block1" src="images/'.$data['img'].'" /> <font>'.batimod_utf8_encode($data['titre']).'</font>
+				<p class="style7">'.batimod_utf8_encode($data['descr']).'...<a class="lien" href="detailReference.php?id='.$data['id'].'">Voir+</a></p>
 			  </div>';
 			  
 			  if($i%8==0)

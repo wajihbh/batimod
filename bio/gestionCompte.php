@@ -105,7 +105,7 @@ $data=$res->fetch(PDO::FETCH_ASSOC);
 }
 else
 {
-echo utf8_encode("Erreur lors de la récupération des informations");
+echo batimod_utf8_encode("Erreur lors de la récupération des informations");
 }
 ?></td>
   </tr></table>

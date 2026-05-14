@@ -42,7 +42,7 @@
 					while($data=$res->fetch(PDO::FETCH_ASSOC))
 					{
 					
-					echo '<option value="'.$data['id'].'">'.utf8_encode($data['label']).'</option>';
+					echo '<option value="'.$data['id'].'">'.batimod_utf8_encode($data['label']).'</option>';
 					}
 				}
 				else

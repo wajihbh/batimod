@@ -1,7 +1,7 @@
 <?php
 include("headerInfo.php");
 require_once __DIR__ . '/../includes/dbConnect.php';
-$query="Update categorie set label='".addslashes(utf8_decode($_POST['lbl']))."' where id='".$_GET['id']."' limit 1";
+$query="Update categorie set label='".addslashes(batimod_utf8_decode($_POST['lbl']))."' where id='".$_GET['id']."' limit 1";
 $res=$pdo->query( $query);
 
 if(!$res)

@@ -48,7 +48,7 @@ if(isset($_FILES['image']) && $_FILES['image']!="")
 
 require_once __DIR__ . '/../includes/dbConnect.php';
 
-$query="insert into diaporama(titre, descr, img,active) values ('".utf8_decode(addslashes($titre))."','".utf8_decode(addslashes($desc))."','".$fichier."','".$active."')";
+$query="insert into diaporama(titre, descr, img,active) values ('".batimod_utf8_decode(addslashes($titre))."','".batimod_utf8_decode(addslashes($desc))."','".$fichier."','".$active."')";
 $res=$pdo->query( $query);
 
 if($res)

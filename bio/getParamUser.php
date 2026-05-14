@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../includes/encoding_compat.php';
 include("getConnexion.php");
 $query="select * from adminuser where zLogin='".$_SESSION['userLogin']."' and zpasshash='".$_SESSION['userPass']."' limit 1";
 $res=$pdo->query( $query);
@@ -78,6 +79,6 @@ $data=$res->fetch(PDO::FETCH_ASSOC);
 }
 else
 {
-echo utf8_decode("Erreur lors de la r�cup�ration des informations");
+echo batimod_utf8_decode("Erreur lors de la r�cup�ration des informations");
 }
 ?>

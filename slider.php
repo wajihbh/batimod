@@ -16,9 +16,9 @@
 				foreach($slides as $data)
 				{
 					echo ' <li>
-					<h1 class="main_title">'.utf8_encode($data['titre']).'</h1>
-					<p class="subtitle">'.utf8_encode($data['descr']).'</p>
-					<img src="images/'.$data['img'].'" alt="'.utf8_encode($data['titre']).'"  />
+					<h1 class="main_title">'.batimod_utf8_encode($data['titre']).'</h1>
+					<p class="subtitle">'.batimod_utf8_encode($data['descr']).'</p>
+					<img src="images/'.$data['img'].'" alt="'.batimod_utf8_encode($data['titre']).'"  />
 					</li>';
 				}
 			}

@@ -41,10 +41,10 @@ $data=$res->fetch(PDO::FETCH_ASSOC);
 ?>
 <form action="saveProjet.php?id=<?php echo $data['id']; ?>" method="post">
   <table width="730" height="140"   border="0" align="center" cellpadding="0" cellspacing="0" >
-     <tr><td colspan="2"><div align="center"><strong><?php echo utf8_encode($data['titre']); ?></strong></div></td>
+     <tr><td colspan="2"><div align="center"><strong><?php echo batimod_utf8_encode($data['titre']); ?></strong></div></td>
      </tr>
-     <tr><td width="180">Titre : </td><td><input type='text' value="<?php echo utf8_encode($data['titre']); ?>" name='titre' size="39"/></td></tr>
-     <tr><td>Description : </td><td><textArea name='desc' cols="70" rows="9"><?php echo utf8_encode($data['descr']); ?></textArea></td></tr>
+     <tr><td width="180">Titre : </td><td><input type='text' value="<?php echo batimod_utf8_encode($data['titre']); ?>" name='titre' size="39"/></td></tr>
+     <tr><td>Description : </td><td><textArea name='desc' cols="70" rows="9"><?php echo batimod_utf8_encode($data['descr']); ?></textArea></td></tr>
      <tr><td>Type :</td><td>
      <select name="type">
 	 <?php
@@ -65,7 +65,7 @@ $data=$res->fetch(PDO::FETCH_ASSOC);
      <tr><td>Image Principale : </td><td><img src="../images/<?php echo $data['img']; ?>"  /> <br /> 
      <a href="javascript:affichage_popup('modifierImgProjet.php?id=<?php echo $data['id']; ?>','Modifier IMG');">Modifier</a><br /><br /> </td></tr>
     
-     <tr><td>Emplacement : </td><td><input type="text" name="emplacement"  value="<?php echo utf8_encode($data['Emplacement']); ?>"/> </td></tr>
+     <tr><td>Emplacement : </td><td><input type="text" name="emplacement"  value="<?php echo batimod_utf8_encode($data['Emplacement']); ?>"/> </td></tr>
      <tr><td>Catégorie : </td><td>
      <select name="categ">
 	 <?php 
@@ -77,11 +77,11 @@ $data=$res->fetch(PDO::FETCH_ASSOC);
 	 {
 		 if($dataCat['id']==$data['categ'])
 		 {
-		 	echo '<option value="'.$dataCat['id'].'" selected>'.utf8_encode($dataCat['label']).'</option>';
+		 	echo '<option value="'.$dataCat['id'].'" selected>'.batimod_utf8_encode($dataCat['label']).'</option>';
 		 }
 		 else
 		 {
-		 	echo '<option value="'.$dataCat['id'].'" >'.utf8_encode($dataCat['label']).'</option>';
+		 	echo '<option value="'.$dataCat['id'].'" >'.batimod_utf8_encode($dataCat['label']).'</option>';
 		 }
 	 }
 	 ?> 

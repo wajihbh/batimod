@@ -10,7 +10,7 @@ if($res)
 		<?php 
         while($data=$res->fetch(PDO::FETCH_ASSOC))
         {
-            echo '<li class="sliding-element"><a href="detailCategorie.php?cat='.$data['id'].'">'.utf8_encode($data['label']).'</a></li>';
+            echo '<li class="sliding-element"><a href="detailCategorie.php?cat='.$data['id'].'">'.batimod_utf8_encode($data['label']).'</a></li>';
         }
         ?>
     </ul>

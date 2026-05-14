@@ -22,8 +22,8 @@
 			<tr bgcolor='".$color."' align='center'>
 			<td><font color=\"".$couleur_police."\">".$i."</font></td>
 			<td><font color=\"".$couleur_police."\"> <img src='../".$data['path']."' /></font></td>
-			<td><font color=\"".$couleur_police."\">".utf8_encode($data['titre'])."</font></td>
-			<td><font color=\"".$couleur_police."\">".utf8_encode($data['descr'])."</font></td>
+			<td><font color=\"".$couleur_police."\">".batimod_utf8_encode($data['titre'])."</font></td>
+			<td><font color=\"".$couleur_police."\">".batimod_utf8_encode($data['descr'])."</font></td>
 			<td>
 			<a href='editerImgGalerie.php?id=".$data['id']."&proj=".$idProj."' title='Editer' ><img src='images/edit.png' border=0/></a>
 			&nbsp;&nbsp;<a href='deleteImgGalerie.php?id=".$data['id']."&proj=".$idProj."' title='Supprimer'><img src='images/delete.png' border=0/></a>&nbsp;&nbsp;".$publish."

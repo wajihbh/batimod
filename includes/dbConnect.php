@@ -47,5 +47,3 @@ if (!function_exists('batimod_pdo_escape')) {
         return substr($q, 1, -1);
     }
 }
-
-$handler = true;
