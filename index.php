@@ -12,6 +12,7 @@
 <script  type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
+  test<br>
 <?php include('includes/dbConnect.php'); ?>
 
 </div>
