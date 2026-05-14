@@ -24,7 +24,7 @@
 	?>
     <div align="center">
       <div align="center">
-       <p><span class="titleRubrique" >Gestion Des Plan de Masse du Projet <b style="color:#FF0000"><?php echo batimod_utf8_encode($data['titre']); ?></b></span></p>
+       <p><span class="titleRubrique" >Gestion Des Plan de Masse du Projet <b style="color:#FF0000"><?php echo utf8_encode($data['titre']); ?></b></span></p>
       </div>
     </div>
     </td>

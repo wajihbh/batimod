@@ -10,7 +10,7 @@ if($res)
 		<?php 
         while($data=mysqli_fetch_assoc($res))
         {
-            echo '<li class="sliding-element"><a href="detailCategorie.php?cat='.$data['id'].'">'.batimod_utf8_encode($data['label']).'</a></li>';
+            echo '<li class="sliding-element"><a href="detailCategorie.php?cat='.$data['id'].'">'.utf8_encode($data['label']).'</a></li>';
         }
         ?>
     </ul>

@@ -6,8 +6,8 @@ if($res)
 	$data=mysqli_fetch_assoc($res);
 	?>
 	<div id="contenu">
-	  <h2><?php echo batimod_utf8_encode($data['titre']); ?></h2>
-	  <p class="style6"><?php echo batimod_utf8_encode($data['descr']); ?></p>
+	  <h2><?php echo utf8_encode($data['titre']); ?></h2>
+	  <p class="style6"><?php echo utf8_encode($data['descr']); ?></p>
 	  <img class="img-presentation" src="images/service1.png" />
 	  <img class="img-presentation" src="images/service3.jpg" />
 	</div>

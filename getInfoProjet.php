@@ -2,43 +2,48 @@
 
 declare(strict_types=1);
 
-$idRaw = isset($_GET['id']) ? trim((string) $_GET['id']) : '';
-$id = (int) $idRaw;
-if ($id <= 0 || (string) $id !== $idRaw) {
-    echo '<div class="error">Référence invalide</div>';
+if (!isset($con) || !$con instanceof mysqli) {
+    require __DIR__ . '/includes/dbConnect.php';
+}
+
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+if ($id <= 0) {
+    echo '<div class="error">Aucune information trouvée</div>';
+
     return;
 }
 
-$stmt = mysqli_prepare($con, 'SELECT * FROM projets WHERE id = ? AND active = 1 LIMIT 1');
+$stmt = mysqli_prepare(
+    $con,
+    'SELECT titre, descr, img FROM projets WHERE id = ? AND active = 1 LIMIT 1'
+);
 if ($stmt === false) {
     echo '<div class="error">Aucune information trouvée</div>';
+
     return;
 }
 mysqli_stmt_bind_param($stmt, 'i', $id);
 mysqli_stmt_execute($stmt);
-$res = mysqli_stmt_get_result($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$data = $result ? mysqli_fetch_assoc($result) : false;
 mysqli_stmt_close($stmt);
 
-$data = $res ? mysqli_fetch_assoc($res) : null;
-if ($res instanceof mysqli_result) {
-    mysqli_free_result($res);
-}
-
-if ($data === null) {
+if ($data === false || $data === null) {
     echo '<div class="error">Aucune information trouvée</div>';
+
     return;
 }
 
-$titre = function_exists('mb_convert_encoding')
-    ? mb_convert_encoding((string) $data['titre'], 'UTF-8', 'ISO-8859-1')
-    : (string) $data['titre'];
-$descr = function_exists('mb_convert_encoding')
-    ? mb_convert_encoding((string) $data['descr'], 'UTF-8', 'ISO-8859-1')
-    : (string) $data['descr'];
-$img = htmlspecialchars((string) $data['img'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+$h = static function (?string $s): string {
+    return htmlspecialchars((string) $s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+};
+
+$titre = batimod_utf8_encode((string) ($data['titre'] ?? ''));
+$descr = batimod_utf8_encode((string) ($data['descr'] ?? ''));
+$img = $h((string) ($data['img'] ?? ''));
 ?>
-	<div id="etablissement">
-	<h2><?php echo htmlspecialchars($titre, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></h2>
-	<p><?php echo nl2br(htmlspecialchars($descr, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')); ?></p>
-	<img class="img-presentation" src="images/<?php echo $img; ?>" />
-	</div>
+<div id="etablissement">
+<h2><?php echo $h($titre); ?></h2>
+<p><?php echo $h($descr); ?></p>
+<img class="img-presentation" src="images/<?php echo $img; ?>" alt="" />
+</div>

@@ -15,8 +15,8 @@
 		$couleur_police = ($i % 2)  ? '#000000' : '#0069B3' ;
 			echo "
 			<tr bgcolor='".$color."'>
-			<td><font color=\"".$couleur_police."\">".batimod_utf8_encode($data['categ'])."</font></td>
-			<td><font color=\"".$couleur_police."\">".batimod_utf8_encode($data['descr'])."</font></td>
+			<td><font color=\"".$couleur_police."\">".utf8_encode($data['categ'])."</font></td>
+			<td><font color=\"".$couleur_police."\">".utf8_encode($data['descr'])."</font></td>
 			<td><a href='editRubrique.php?id=".$data['id']."' title='Editer'><img src='images/edit.png' border='0'></a></td>
 			</tr>
 			";

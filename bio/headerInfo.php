@@ -1,9 +1,8 @@
-<?php
-
-declare(strict_types=1);
-
+<?php 
 session_start();
-if (!isset($_SESSION['userLogin'], $_SESSION['userId']) || $_SESSION['userLogin'] === '' || (int) $_SESSION['userId'] <= 0) {
-    header('Location: index.php');
-    exit;
+if(!isset($_SESSION['userLogin']) || $_SESSION['userLogin']=="" || !isset($_SESSION['userPass'])  ||  $_SESSION['userPass']=="")
+{
+header("Location: index.php");
+die();
 }
+?>

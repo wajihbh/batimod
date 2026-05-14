@@ -25,52 +25,62 @@
       
       <?php
 
-$mot = isset($_POST['rech']) ? trim((string) $_POST['rech']) : '';
-if ($mot === '') {
-    echo '<p>Veuillez saisir un terme de recherche.</p>';
-} else {
-    $like = '%' . $mot . '%';
-    $stmt = mysqli_prepare($con, 'SELECT id, type, titre, descr FROM projets WHERE descr LIKE ?');
-    if ($stmt === false) {
-        echo '<p class="error">Un problème est survenu lors de la récupération des données.</p>';
-        error_log('rstRecherche: prepare failed — ' . mysqli_error($con));
-    } else {
-        mysqli_stmt_bind_param($stmt, 's', $like);
-        mysqli_stmt_execute($stmt);
-        $requete = mysqli_stmt_get_result($stmt);
-        mysqli_stmt_close($stmt);
+declare(strict_types=1);
 
-        if ($requete instanceof mysqli_result) {
-            $nb_total = mysqli_num_rows($requete);
-            if ($nb_total === 0) {
-                echo '<p>Désolé, aucune page de ce site ne contient <b>' . htmlspecialchars($mot, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '</b>...</p>';
-            } else {
-                echo '<p><b>' . (int) $nb_total . '</b> réponse(s) trouvée(s)</p>';
+if (!isset($con) || !$con instanceof mysqli) {
+    require __DIR__ . '/includes/dbConnect.php';
+}
+
+$limit = 2;
+$script_name = 'rstRecherche.php';
+$et_ou = 'or';
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['rech'])) {
+    echo '<p>Veuillez utiliser le formulaire de recherche.</p>';
+} else {
+    $motRaw = trim((string) $_POST['rech']);
+    if ($motRaw === '') {
+        echo '<p>Terme de recherche vide.</p>';
+    } else {
+        $stmt = mysqli_prepare(
+            $con,
+            'SELECT id, titre, descr, type FROM projets WHERE descr LIKE CONCAT(\'%\', ?, \'%\')'
+        );
+        if ($stmt === false) {
+            echo '<p>Erreur lors de la recherche.</p>';
+        } else {
+            mysqli_stmt_bind_param($stmt, 's', $motRaw);
+            mysqli_stmt_execute($stmt);
+            $requete = mysqli_stmt_get_result($stmt);
+            mysqli_stmt_close($stmt);
+
+            $h = static function (?string $s): string {
+                return htmlspecialchars((string) $s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            };
+            $motDisp = $h($motRaw);
+
+            if ($requete && mysqli_num_rows($requete) > 0) {
+                $nb_total = mysqli_num_rows($requete);
+                echo '<b>' . (int) $nb_total . '</b> réponse(s) trouvée(s) pour <b>' . $motDisp . '</b><br>';
+
                 while ($data = mysqli_fetch_assoc($requete)) {
-                    if ((int) $data['type'] === 1) {
-                        $url = 'detailReference.php?id=' . (int) $data['id'];
-                    } else {
-                        $url = 'projet-cours.php';
-                    }
-                    $titre = function_exists('mb_convert_encoding')
-                        ? mb_convert_encoding((string) $data['titre'], 'UTF-8', 'ISO-8859-1')
-                        : (string) $data['titre'];
-                    $descr = function_exists('mb_convert_encoding')
-                        ? mb_convert_encoding((string) $data['descr'], 'UTF-8', 'ISO-8859-1')
-                        : (string) $data['descr'];
-                    echo '<br><br><a href="' . htmlspecialchars($url, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '"><b>'
-                        . htmlspecialchars($titre, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '</b></a><br>'
-                        . nl2br(htmlspecialchars($descr, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'))
-                        . '<br><small>' . htmlspecialchars($url, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '</small><br>';
+                    $type = (int) ($data['type'] ?? 0);
+                    $url = $type === 1
+                        ? 'detailReference.php?id=' . (int) ($data['id'] ?? 0)
+                        : 'projet-cours.php';
+                    $titre = $h(batimod_utf8_encode((string) ($data['titre'] ?? '')));
+                    $descr = $h(batimod_utf8_encode((string) ($data['descr'] ?? '')));
+                    $urlDisp = $h($url);
+                    echo '<br><br><a href="' . $h($url) . '"><b>' . $titre . '</b></a><br>' . $descr . '<br><font size="1">' . $urlDisp . '</font><br>';
                 }
                 echo '<br><br>';
+            } else {
+                echo 'Désolé, aucune page de ce site ne contient <b>' . $motDisp . '</b>...';
             }
-            mysqli_free_result($requete);
         }
     }
 }
 
-mysqli_close($con);
 ?>
        
       </div>
