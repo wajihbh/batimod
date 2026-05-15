@@ -9,13 +9,15 @@ include('includes/dbConnect.php');
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BATIMOD</title>
-<link rel="stylesheet" type="text/css" href="../css/style.css" />
-<link href="../css/960.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link href="css/960.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-3.5.2.min.js"></script>
 <script type="text/javascript" src="sliding_effect.js"></script>
 <script type="text/javascript" src="js/min.js"></script>
 <script  type="text/javascript" src="js/script.js"></script>
+
+	<?php include __DIR__ . '/includes/head_responsive.php'; ?>
 </head>
 <body>
 </div>

@@ -31,11 +31,11 @@ h3 {
 	text-decoration:underline;
 }
 #page {
-	width:1000px;
-	height:auto;
-	;
-	margin:0 auto;
-	position:relative;
+	width: 1000px;
+	max-width: 100%;
+	height: auto;
+	margin: 0 auto;
+	position: relative;
 }
 #blok_rech {
 	width:292px;
@@ -47,10 +47,13 @@ h3 {
 	padding-top:125px;
 }
 #header {
-	width:1000px;
-	height:384px;
-	background:url(../images/header.png);
-	padding-top:10px;
+	width: 1000px;
+	max-width: 100%;
+	min-height: 384px;
+	height: auto;
+	background: url(../images/header.png);
+	padding-top: 10px;
+	overflow: hidden;
 }
 #logo {
 	margin-left:15px;
@@ -89,49 +92,120 @@ ul#sliding-navigation li.sliding-element a:hover {
 	float:left;
 	margin-left:-10px;
 }
-/* slideshow */
-#slideshow, #slideshow_noslide {
-	position:relative;
-	width:794px;
-	height:246px;
-	overflow:hidden;
-	clear:both;
-}
-.slide_entry, .slide_entry_noslide {
+/* slideshow — hauteur fluide (clamp) + légende sous l’image */
+#slideshow,
+#slideshow_noslide {
 	position: relative;
-	width: 940px;
-	height:262px;
-}
-#slideshow ul {
-	left:0px;
-	width: 940px;
-	top:0px;
+	width: min(794px, 100%);
+	max-width: 100%;
 	overflow: hidden;
-	position: absolute;
+	clear: both;
+	padding-bottom: clamp(2.25rem, 3.5vw, 3rem);
 }
-#slideshow ul li {
-	float: left;
-	position: absolute;
-	text-align: center;
-	width: 940px;
-	height:262px;
+
+.slide_entry,
+.slide_entry_noslide {
+	position: relative;
+	width: min(940px, 100%);
+	max-width: 100%;
+	margin: 0 auto;
 }
-.main_title, .subtitle {
-	position:absolute;
-	left:-650px;
-	padding:10px;
-	width:600px;
-	text-align:left;
-	color:#fff;
-	background:#333;
-	opacity:0.5;
+
+#slideshow ul {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	max-width: 100%;
+	height: clamp(280px, 48vw, 460px);
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#slideshow ul li.slide_item {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	max-width: 100%;
+	height: 100%;
+	float: none;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	box-sizing: border-box;
+	padding: 0;
+}
+
+.slide_visual {
+	position: relative;
+	flex: 2 1 0;
+	min-height: 0;
+	overflow: hidden;
+}
+
+.slide_visual img {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.slide_caption {
+	flex: 1 1 auto;
+	min-height: 0;
+	padding: clamp(0.35rem, 1vw, 0.65rem) clamp(0.5rem, 1.2vw, 0.85rem);
+	background: rgba(51, 51, 51, 0.88);
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.15em;
+}
+
+.main_title,
+.subtitle {
+	position: static;
+	left: auto;
+	top: auto;
+	bottom: auto;
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	color: #fff;
+	background: transparent;
+	opacity: 1;
+}
+
+.main_title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: clamp(1.05rem, 0.85rem + 1.1vw, 1.65rem);
+	font-weight: bold;
+	line-height: 1.2;
+}
+
+.subtitle {
+	font-size: clamp(0.8rem, 0.72rem + 0.45vw, 1rem);
+	line-height: 1.35;
+	margin: 0;
+	max-height: 4.5em;
+	overflow: hidden;
 }
 #number {
 	z-index: 50;
 	position: absolute;
-	bottom: 10px;
-	right: 10px;
-	font: normal 18px/42px 'TitilliumMaps26L999wt', "Trebuchet MS", Arial, Helvetica, sans-serif;
+	bottom: clamp(0.35rem, 1vw, 0.65rem);
+	right: clamp(0.35rem, 1vw, 0.65rem);
+	font-family: 'TitilliumMaps26L999wt', "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: clamp(0.85rem, 0.75rem + 0.4vw, 1.1rem);
+	line-height: 1.4;
 }
 #number a {
 	margin: 0 5px;
@@ -149,15 +223,6 @@ ul#sliding-navigation li.sliding-element a:hover {
 #number a:focus {
 	outline: none;
 	text-decoration:none;
-}
-.main_title {
-	bottom: 90px;
-	font-size:26px;
-	font-family:Arial, Helvetica, sans-serif;
-}
-.subtitle {
-	top:180px;
-	font-size:16px;
 }
 #top {
 	float:left;
@@ -193,10 +258,12 @@ ul#sliding-navigation li.sliding-element a:hover {
 	text-indent:-9999px;
 }
 .theme-default #slider {
-	margin-top:10px;
-	width:618px; /* Make sure your images are the same size */
-	height:246px; /* Make sure your images are the same size */
-	float:left;
+	margin-top: 10px;
+	width: min(618px, 100%);
+	max-width: 100%;
+	height: auto;
+	min-height: clamp(200px, 40vw, 320px);
+	float: left;
 }
 .theme-pascal.slider-wrapper, .theme-orman.slider-wrapper {
 	margin-top:150px;

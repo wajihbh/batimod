@@ -15,19 +15,23 @@
 			{
 				foreach($slides as $data)
 				{
-					echo ' <li>
+					echo '<li class="slide_item">
+					<div class="slide_visual"><img src="images/'.$data['img'].'" alt="'.batimod_utf8_encode($data['titre']).'" /></div>
+					<div class="slide_caption">
 					<h1 class="main_title">'.batimod_utf8_encode($data['titre']).'</h1>
 					<p class="subtitle">'.batimod_utf8_encode($data['descr']).'</p>
-					<img src="images/'.$data['img'].'" alt="'.batimod_utf8_encode($data['titre']).'"  />
+					</div>
 					</li>';
 				}
 			}
 			else
 			{
-				echo '<li>
+				echo '<li class="slide_item">
+					<div class="slide_visual"><img src="images/slider01.jpg" alt="BATIMOD" /></div>
+					<div class="slide_caption">
 					<h1 class="main_title">BATIMOD</h1>
-					<p class="subtitle">Soci�t� de B�timent Moderne</p>
-					<img src="images/slider01.jpg" alt="Featured Img 2"  />
+					<p class="subtitle">Société de Bâtiment Moderne</p>
+					</div>
 				  </li>';
 			}
 			

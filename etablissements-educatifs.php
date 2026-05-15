@@ -21,6 +21,8 @@
 
 
 
+
+	<?php include __DIR__ . '/includes/head_responsive.php'; ?>
 </head>
 
 <body>
