@@ -10,11 +10,10 @@
 
 
 <link rel="stylesheet" type="text/css" href="css/main.css" />
-<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.4.1.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="sliding_effect.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/min.js"></script>
 <script  type="text/javascript" src="js/script.js"></script> 
 
