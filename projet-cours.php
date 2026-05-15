@@ -12,8 +12,6 @@
 <script type="text/javascript" src="js/min.js"></script>
 <script  type="text/javascript" src="js/script.js"></script>
 <link rel="stylesheet" href="css/styles.css" type="text/css" />
-
-	<?php include __DIR__ . '/includes/head_responsive.php'; ?>
 </head>
 <body>
 </div>

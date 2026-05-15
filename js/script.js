@@ -6,16 +6,29 @@ jQuery(document).ready(function()
 
 ///////////////////////////////////////////////////////////////////////////////////// 
 //
-//	Slideshow (hauteur pilotée par le CSS clamp sur #slideshow ul)
+//	regular size slideshow settings
 //
+
 jQuery('.slide_entry ul').cycle({
-	fx: 'fade',
-	easing: 'easeOutExpo',
-	speed: 'slow',
-	timeout: 8000,
-	pager: '#number',
-	pause: 1
-});
+		fx: 'blindY',
+		easing: 'easeOutExpo',
+		speed:  'slow',
+		before: onBefore,
+        after: onAfter,
+        timeout: 8000,
+		pager:  '#number',
+		pause: 1
+	});
+
+function onAfter() {
+ jQuery(".main_title").delay(100).animate({left: '0px' }, 700, 'easeOutBack');
+ jQuery(".subtitle").delay(200).animate({left: '0px' }, 700, 'easeOutBack');
+}
+function onBefore() {
+    jQuery(".main_title, .subtitle").animate({left: '-650px' }, 500);
+} 
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -193,7 +206,7 @@ function verifRecherche()
 {
 	if ((document.recherch.rech.value=="") || (document.recherch.rech.value=="RECHERCHE") || (document.recherch.rech.value=="Recherche") )
 	{
-		alert('Veuillez saisir un terme  rechercher ! Merci.');
+		alert('Veuillez saisir un terme à rechercher ! Merci.');
 		return(false);
 	}
 	else
@@ -202,49 +215,3 @@ function verifRecherche()
 		return(true);
 	}
 }
-
-jQuery(function ($) {
-	var $toggle = $('#batimod-nav-toggle');
-	var $root = $('#cssmenu');
-	if (!$toggle.length || !$root.length) {
-		return;
-	}
-
-	var mq = window.matchMedia('(max-width: 768px)');
-
-	function onMqChange() {
-		if (!mq.matches) {
-			$root.removeClass('is-open');
-			$root.find('.has-sub').removeClass('is-open-sub');
-			$toggle.attr('aria-expanded', 'false');
-		}
-	}
-
-	$toggle.on('click', function () {
-		if (!mq.matches) {
-			return;
-		}
-		var open = !$root.hasClass('is-open');
-		$root.toggleClass('is-open', open);
-		$toggle.attr('aria-expanded', open ? 'true' : 'false');
-	});
-
-	if (mq.addEventListener) {
-		mq.addEventListener('change', onMqChange);
-	} else if (mq.addListener) {
-		mq.addListener(onMqChange);
-	}
-
-	$root.find('.has-sub > a').on('click', function (e) {
-		if (!mq.matches) {
-			return;
-		}
-		var $li = $(this).parent();
-		if (!$li.hasClass('has-sub')) {
-			return;
-		}
-		e.preventDefault();
-		$li.siblings('.has-sub').removeClass('is-open-sub');
-		$li.toggleClass('is-open-sub');
-	});
-});

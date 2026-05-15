@@ -14,8 +14,6 @@
 <script type="text/javascript" src="sliding_effect.js"></script>
 <script type="text/javascript" src="js/min.js"></script>
 <script  type="text/javascript" src="js/script.js"></script>
-
-	<?php include __DIR__ . '/includes/head_responsive.php'; ?>
 </head>
 <body>
 </div>

@@ -1,4 +1,3 @@
-<button type="button" class="batimod-nav-toggle" id="batimod-nav-toggle" aria-controls="cssmenu" aria-expanded="false">Menu</button>
 <div id='cssmenu'>
       <ul>
         <li><a href="index.php"><img style="margin-top:10px;" src="images/home_icon.png" /></a></li>
