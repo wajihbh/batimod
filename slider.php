@@ -26,7 +26,7 @@
 			{
 				echo '<li>
 					<h1 class="main_title">BATIMOD</h1>
-					<p class="subtitle">Soci�t� de B�timent Moderne</p>
+					<p class="subtitle">Société de Bâtiment Moderne</p>
 					<img src="images/slider01.jpg" alt="Featured Img 2"  />
 				  </li>';
 			}

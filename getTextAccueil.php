@@ -15,6 +15,6 @@ $data=$res->fetch(PDO::FETCH_ASSOC);
 }
 else
 {
-echo '<div class="error">Erreur : impossible de r�cup�rer les donn�es</div> ';
+echo '<div class="error">Erreur : impossible de récupérer les données</div> ';
 }
 ?>
